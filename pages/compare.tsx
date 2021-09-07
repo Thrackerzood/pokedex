@@ -8,20 +8,19 @@ import { CompareS } from "../styles/compare";
 const Compare:NextPage = () => {
    const [state, setState] = useState([])
    const [load, setLoad] = useState(false)
-   let storage:any
-   if(typeof window !== 'undefined'){
-      storage = window.localStorage
-   }
+   let storage
    const loadData = async() => {
-      if (typeof localStorage === 'string') {
+      storage = await window.localStorage
+      let storageData:any = storage.getItem('pokemon')
       const allPokemon:any = await Promise.all(
-         await JSON.parse(storage.getItem('pokemon')).map(
+         await JSON.parse(storageData).map(
              async (pokemon:any) => {
                  return await ajax(`https://pokeapi.co/api/v2/pokemon/${pokemon}` , 'GET')
      }))
      await setState(allPokemon)
+     
      await setLoad(true)
-   }
+     console.log(state)
    }
    useEffect(() => {
       loadData()
@@ -48,8 +47,8 @@ const Compare:NextPage = () => {
                         <div>
                            {data.stats.map((stat:any)=> {
                               return   <div>
-                                          <p>{stat.stat.name} : </p>
-                                          <p>{stat.base_stat}   </p>
+                                          <p>{stat.stat.name}</p>
+                                          <p>{stat.base_stat}</p>
                                        </div>
                            })}
                         </div>
