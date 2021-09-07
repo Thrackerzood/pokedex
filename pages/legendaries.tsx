@@ -24,7 +24,13 @@ const Legendaries:NextPage = () => {
     const refSliderSpecialAttack:MutableRefObject<HTMLDivElement | null> = useRef(null)
     const refSliderSpecialDefense:MutableRefObject<HTMLDivElement | null>= useRef(null)
     const refSliderSpeed:MutableRefObject<HTMLDivElement | null> = useRef(null)
-    const storage:any = window.localStorage
+
+    let storage:any
+    if(typeof window !== 'undefined'){
+        storage = window.localStorage
+    }
+
+
     const loadData:any = async() => {
         const result:any = await ajax('https://pokeapi.co/api/v2/characteristic?offset=0&limit=30', 'GET')
 /*1 характеристики*/const allStat:any = await Promise.all( result.results.map(
@@ -171,7 +177,7 @@ const Legendaries:NextPage = () => {
                 </p>
                 }
                 {
-                    typeof window !== 'undefined' ? 
+                    typeof window !== 'undefined' ?
                     <div className="pokemonStorage">{JSON.parse(storage.getItem('pokemon')).map((pokemon:string)=>{
                         return <p>{pokemon}</p>
                 })}</div>
