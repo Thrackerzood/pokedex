@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { useContext, useEffect, useState } from "react";
 import { SwitchS } from '../styles/SwitchS';
-import { Context, ContextPokemon } from '../context/context';
+import { Contexts, ContextPokemon } from '../context/context';
 import { ajax, allGetPokemon } from '../middleware/ajax';
 import PokedexPage from './pokedexPage';
 
@@ -9,7 +9,7 @@ import PokedexPage from './pokedexPage';
 const PokedexContent:NextPage = () => {
 
     const pokemonUrl:any = useContext(ContextPokemon)
-    const pokemon:any = useContext(Context)
+    const pokemon:any = useContext(Contexts)
     const [data, setData]:any = useState([])
     const [allPokemon, setPokemon]:any = useState([])
     const [load, setStateLoad]:any = useState(false)
@@ -82,6 +82,7 @@ const PokedexContent:NextPage = () => {
 
     useEffect(() => {
         loadData()
+        console.log(data)
     }, [pokemon , pokemonUrl])
 
     return(<>

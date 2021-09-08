@@ -57,27 +57,30 @@ label{
 	box-sizing: border-box;			
 	width: 80px;	
 	height: 44px;
+   display: flex;
+   align-items: center;
 	border: 1px solid rgba(0, 0, 0, .1);
 	border-radius: 100px;	
 	background: rgb(0,0,0, .1);
 	transition: .2s;
    :before{
-      top: 1px;
+      top: 2.5px;
+      left: 2px;
       content: '';
 	   position: absolute;	
-	   width: 39px;	
-	   height: 39px;
+	   width: 38px;	
+	   height: 38px;
 	   border-radius: 100px;
-	   background: white;
 	   transition: .15s;
+      background: white url('img/sun.png') no-repeat 50% 50%;
    }
 }
-
 input {
 	display: none;
 }
-
-input:checked + .checkbox-switch:before {
-	transform:translateX(38px);
+input:checked + .checkbox-switch::before {
+   top: 2px;
+	transform:translateX(35px);
+   background: white url('img/Subtract.png') no-repeat 50% 50%;
 }
 `

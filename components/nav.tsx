@@ -41,8 +41,8 @@ const Nav: NextPage = () => {
 
     <label>
 	      <input type="checkbox" onClick={themeToggle}/>
-	      <span className="checkbox-switch">
-        </span>
+	      <div className="checkbox-switch">
+        </div>
     </label>
   </NavS>
   </>)

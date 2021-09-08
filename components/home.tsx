@@ -2,14 +2,14 @@ import type { NextPage } from 'next'
 import { HomeS } from '../styles/home'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { MouseEvent, useState } from 'react'
 const HomePage: NextPage = () => {
 
-  const [state, setState]:any = useState()
+  const [state, setState]:any = useState(0)
 
-  function mouseEnter(e:any){
-    let x = (window.innerWidth / 2 - e.pageX) / 100;
-    let y = (window.innerHeight / 2 - e.pageY) / 50;
+  function mouseEnter(e:MouseEvent){
+    let x:number = (window.innerWidth / 2 - e.pageX) / 100;
+    let y:number = (window.innerHeight / 2 - e.pageY) / 50;
     setState({x, y})
   }
 
@@ -17,7 +17,7 @@ const HomePage: NextPage = () => {
 
 
   return (
-  <HomeS onMouseMove={mouseEnter}>
+  <HomeS onMouseMove={(event: MouseEvent) => mouseEnter(event)}>
     <article>
       <p className="article-p">
         <b className="article-b"> Find</b>

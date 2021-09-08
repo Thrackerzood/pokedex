@@ -5,27 +5,56 @@ import { LegendariesS } from "../styles/legendariesS";
 import {reduser} from "../middleware/useReduser";
 
 const Legendaries:NextPage = () => {
-    const [stateHp, setStateHp]:[number,Dispatch<SetStateAction<number>>] = useState(0)
-    const [offsetAttack, setOffsetAttack]:[number,Dispatch<SetStateAction<number>>] = useState(0)
-    const [offsetDefence, setOffsetDefence]:[number,Dispatch<SetStateAction<number>>] = useState(0)
-    const [offsetSA, setOffsetSA]:[number,Dispatch<SetStateAction<number>>] = useState(0)
-    const [offsetSD, setOffsetSD]:[number,Dispatch<SetStateAction<number>>] = useState(0)
-    const [offsetS, setOffsetS]:[number,Dispatch<SetStateAction<number>>] = useState(0)
+    const [stateHp, setStateHp]
+    :[number,Dispatch<SetStateAction<number>>] 
+    = useState(0)
+    const [offsetAttack, setOffsetAttack]
+    :[number,Dispatch<SetStateAction<number>>] 
+    = useState(0)
+    const [offsetDefence, setOffsetDefence]
+    :[number,Dispatch<SetStateAction<number>>] 
+    = useState(0)
+    const [offsetSA, setOffsetSA]
+    :[number,Dispatch<SetStateAction<number>>] 
+    = useState(0)
+    const [offsetSD, setOffsetSD]
+    :[number,Dispatch<SetStateAction<number>>] 
+    = useState(0)
+    const [offsetS, setOffsetS]
+    :[number,Dispatch<SetStateAction<number>>] 
+    = useState(0)
     const [data, setData]:any = useState([])
     const [stateReduser, dispatch]:any = useReducer(reduser, [])
     const [dataPosibleValue, setDataPosibleValue]:any = useState([])
     const [description, setDescription]: any = useState([])
     const [load, setLoad]
-    :[boolean | any,Dispatch<SetStateAction<boolean | any>>] 
+    :[boolean 
+    | any,
+    Dispatch<SetStateAction<boolean 
+    | any>>] 
     = useState(false)
-    const refSliderHp:MutableRefObject<HTMLDivElement | null> = useRef(null)
-    const refSliderAttack:MutableRefObject<HTMLDivElement | null> = useRef(null)
-    const refSliderDefense:MutableRefObject<HTMLDivElement | null> = useRef(null)
-    const refSliderSpecialAttack:MutableRefObject<HTMLDivElement | null> = useRef(null)
-    const refSliderSpecialDefense:MutableRefObject<HTMLDivElement | null>= useRef(null)
-    const refSliderSpeed:MutableRefObject<HTMLDivElement | null> = useRef(null)
+    const refSliderHp
+    :MutableRefObject<HTMLDivElement | null> 
+    = useRef(null)
+    const refSliderAttack
+    :MutableRefObject<HTMLDivElement | null> 
+    = useRef(null)
+    const refSliderDefense
+    :MutableRefObject<HTMLDivElement | null> 
+    = useRef(null)
+    const refSliderSpecialAttack
+    :MutableRefObject<HTMLDivElement | null> 
+    = useRef(null)
+    const refSliderSpecialDefense
+    :MutableRefObject<HTMLDivElement | null>
+    = useRef(null)
+    const refSliderSpeed
+    :MutableRefObject<HTMLDivElement | null> 
+    = useRef(null)
 
-    let storage:any
+    let storage: 
+    Storage & 
+    never | any
     if(typeof window !== 'undefined'){
         storage = window.localStorage
     }
@@ -95,6 +124,7 @@ const Legendaries:NextPage = () => {
 
     useEffect(() => {
         loadData()
+        console.log(data)
         setStatePokemon(localStorage.getItem('pokemon'))
         if(!window.localStorage.getItem('pokemon')){
             window.localStorage.setItem('pokemon', '[]')
@@ -153,7 +183,6 @@ const Legendaries:NextPage = () => {
                         </div>
                 </div>})}
                 </div>
-
 
                 {storage.getItem('pokemon').includes(value.name)  ?
                 <p

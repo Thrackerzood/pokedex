@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { Context, createContext } from "react";
 
-export const Context = createContext('')
-export const ContextPokemon = createContext('')
+export const Contexts: Context<string> = createContext('')
+export const ContextPokemon: Context<string> = createContext('')

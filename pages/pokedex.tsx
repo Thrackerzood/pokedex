@@ -1,19 +1,30 @@
 import type { NextPage } from 'next'
-import { ChangeEvent, FormEvent, MouseEvent, MouseEventHandler, useEffect, useState } from 'react'
+import { ChangeEvent, Dispatch, FormEvent, MouseEvent, MouseEventHandler, SetStateAction, useEffect, useState } from 'react'
 import { PokedexS } from '../styles/pokedex'
 import PokedexContent from '../components/pokedexContent'
-import { Context, ContextPokemon } from '../context/context'
+import { Contexts, ContextPokemon } from '../context/context'
 import { ajax } from '../middleware/ajax'
 import { searchString } from '../middleware/search'
 
 const Pokedex: NextPage = () => {
-  const [state, setState]:any = useState({searchS: ''})
+  const [state, setState]
+  :[{
+    searchS: string;
+  },Dispatch<SetStateAction<{
+    searchS: string;
+  }>>] = useState({searchS: ''})
   const [stateSearch, setSearch]:any = useState([])
-  const [blur, setBlur]:any = useState(false)
-  const [mouseEnter, setMouseEnter]:any = useState(false)
+  const [blur, setBlur]:[boolean,Dispatch<SetStateAction<any>>] 
+  = useState(false)
+  const [mouseEnter, setMouseEnter]
+  :[boolean | true| false | any,
+    Dispatch<SetStateAction<boolean | true| false | any>>] 
+    = useState(false)
   const [pokemon, setDataPokemon]:any = useState('')
   const [stateType, setType]:any = useState('')
-  const [showing, showMoreInfo]:any = useState()
+  const [showing, showMoreInfo]
+  :[any ,Dispatch<SetStateAction<any>>] 
+  = useState(null)
   const [typeGenerator, setGenerator]:any = useState('')
 
   function changeSearch(event:any){
@@ -51,7 +62,7 @@ const Pokedex: NextPage = () => {
     setDataPokemon('')
     showMoreInfo(null)
   }, [pokemon, stateSearch, state])
-  return (<Context.Provider value={pokemon}>
+  return (<Contexts.Provider value={pokemon}>
     <ContextPokemon.Provider value={typeGenerator}>
     <PokedexS>
       <p className="main-pokedex__p"
@@ -170,7 +181,7 @@ const Pokedex: NextPage = () => {
       </section>
     </PokedexS>
     </ContextPokemon.Provider>
-    </Context.Provider>)
+    </Contexts.Provider>)
 }
 
 export default Pokedex
