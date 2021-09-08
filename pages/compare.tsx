@@ -1,6 +1,8 @@
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { ajax } from "../middleware/ajax";
+import colorStat from "../middleware/colorStat";
+import colorPokemon from "../middleware/colorTypePokemon";
 import { CompareS } from "../styles/compare";
 
 
@@ -47,6 +49,7 @@ const Compare:NextPage = () => {
 
    useEffect(() => { 
       loadData()
+      console.log(colorStat('defense'))
    }, [])
    
    return (
@@ -54,11 +57,9 @@ const Compare:NextPage = () => {
       {load ?
       <section>
          {state.map((data:any, i:any) => {
-
-
             return <article className="comparePokemon" key={i}>
                      <div>
-                        <p className="pokemon-name" >{data.name}</p> 
+                        <p className="pokemon-name" style={{background: colorPokemon(data.types[0].type.name)}}>{data.name}</p> 
                      </div>
                      <div className="imgCompare">
 
@@ -70,15 +71,19 @@ const Compare:NextPage = () => {
                      </div>
                         <div>
                            {data.stats.map((stat:any, i:any)=> {
-                             return     <>
+                              return     <>
+                                       <div key={i} className="section-stat">
+                                          <p className="pokemon-stat">{stat.stat.name} </p>
+                                          <div className="style-width-stat">
                                           {stat?.max 
                                           ? stat?.maxAll 
                                           ? <p className="max-stat-pokemonAll">{stat?.maxAll} from all pokemon</p>
                                           : <p className="max-stat-pokemon">{stat?.max} from this pokemon</p> 
                                           : null}
-                                       <div key={i} className="section-stat">
-                                          <p className="pokemon-stat" >{stat.stat.name} </p>
-                                          <p> : {stat.base_stat}</p>
+                                             <div style={{width: stat.base_stat , background: colorStat(stat.stat.name) }}>
+                                                <p className="stat-base-stat">{stat.base_stat}</p>
+                                             </div>
+                                          </div>
                                        </div>
                                        </>
                            })}

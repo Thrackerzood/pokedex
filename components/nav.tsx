@@ -3,6 +3,7 @@ import { NavS } from '../styles/navS'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/dist/client/router'
+import { themeToggle } from '../pages/_app'
 
 const Nav: NextPage = () => {
   const router = useRouter()
@@ -39,7 +40,7 @@ const Nav: NextPage = () => {
     </nav>
 
     <label>
-	      <input type="checkbox" />
+	      <input type="checkbox" onClick={themeToggle}/>
 	      <span className="checkbox-switch">
         </span>
     </label>
