@@ -54,7 +54,7 @@ const Legendaries:NextPage = () => {
                 setLoad(true)
     }
 
-    const [statePokemon, setStatePokemon]:any = useState ('');
+    const [statePokemon, setStatePokemon]:any = useState ('')
 
     // localStorage set
     const setPokemon:any = (key:any) =>  {   
@@ -107,11 +107,11 @@ const Legendaries:NextPage = () => {
                     if(stats.effort > 0 && stats.stat.name === str){
                         return dataPosibleValue.map((dataState:any) => {
                             if(dataState.highest_stat.name === str){
-                                if(dataState.possible_values.find((number:number) => {return number === stats.base_stat % 5} )){//если статы при делении на 5 дают 0, то покемона следует делить на 6
+                                if(dataState.possible_values.filter((number:number) => {return number === stats.base_stat % 5} )){//если статы при делении на 5 дают 0, то покемона следует делить на 6
                                     value['description'] = dataState.descriptions[2].description                                //https://bulbapedia.bulbagarden.net/wiki/Characteristic
                                     return value
                                 }
-                                if(dataState.possible_values.find((number:number) => {return number === stats.base_stat % 6} )){
+                                if(dataState.possible_values.filter((number:number) => {return number === stats.base_stat % 6} )){
                                     value['description'] = dataState.descriptions[2].description
                                     return value
                                 }
@@ -125,6 +125,7 @@ const Legendaries:NextPage = () => {
                 })
             }).filter((arr:any) => arr != [].length < 0).flat(3)
         }
+
         const pokemonOpen:any = (str:string) =>  {
             return [...new Set(filterPokemon(str))].map((value:any, i:number) => {
             return <>

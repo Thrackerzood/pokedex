@@ -13,6 +13,16 @@ min-height: calc(100vh - 87px - 93px);
    align-items: flex-start;
    justify-content: space-around;
 }
+.pokemon-name{
+   text-transform: capitalize;
+}
+.pokemon-stat{
+   text-transform: capitalize;
+}
+.section-stat{
+   display: flex;
+   margin: 10px;
+}
 p{
    font-family: 'Karla', sans-serif , -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -36,5 +46,11 @@ p{
       max-width: 200px;
       max-height: 200px;
    }
+}
+.max-stat-pokemon{
+   color: green;
+}
+.max-stat-pokemonAll{
+   color: red;
 }
 `
