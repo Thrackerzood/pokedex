@@ -6,7 +6,7 @@ export const ajax = (url:string, method:string) => {
     .then(result => result.json())
 } 
 
-export const allGetPokemon = async (url:any) => {
+export const allGetPokemon = async (url:string) => {
     return await fetch(url, {
         method: 'GET'
     })

@@ -1,23 +1,21 @@
 import type { NextPage } from 'next'
-import { HomeS } from '../styles/home'
+import { HomeStyle } from '../styles/home'
 import Image from 'next/image'
 import Link from 'next/link'
-import { MouseEvent, useState } from 'react'
+import { Dispatch, MouseEvent, useState } from 'react'
+import Footer from './footer'
 const HomePage: NextPage = () => {
 
-  const [state, setState]:any = useState(0)
+  const [statePositionImage, setStateStatePositionImage]:[{ x: number; y: number; },Dispatch<{ x: number; y: number; }>] = useState({x: 0, y: 0})
 
   function mouseEnter(e:MouseEvent){
     let x:number = (window.innerWidth / 2 - e.pageX) / 100;
     let y:number = (window.innerHeight / 2 - e.pageY) / 50;
-    setState({x, y})
+    setStateStatePositionImage({x, y})
   }
-
-
-
-
-  return (
-  <HomeS onMouseMove={(event: MouseEvent) => mouseEnter(event)}>
+  
+  return (<>
+  <HomeStyle onMouseMove={(event: MouseEvent) => mouseEnter(event)}>
     <article>
       <p className="article-p">
         <b className="article-b"> Find</b>
@@ -52,7 +50,7 @@ const HomePage: NextPage = () => {
       quality={100}
     /></div>
     <div className="pikachu"
-      style={{transform: `rotateY(${state?.x}deg) rotateX(${state?.y}deg)`,}}
+      style={{transform: `rotateY(${statePositionImage?.x}deg) rotateX(${statePositionImage?.y}deg)`,}}
     ><Image
       src='/img/Pikachu.png'
       alt="pikachu" 
@@ -61,8 +59,9 @@ const HomePage: NextPage = () => {
       quality={100}
     /></div>
     </div>
-  </HomeS>
-  )
+  </HomeStyle>
+  <Footer props={{width: '1440px' , color: '#F2B807'}}/>
+  </>)
 }
 
 export default HomePage

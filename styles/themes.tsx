@@ -1,6 +1,10 @@
 export const ThemeDark = {
   body: '#fff',
   color: 'black',
+  colorNav: '',
+  colorFooter: '',
+  backgroundFooter: '',
+  backgroundColorNav: ''
 }
 export const ThemeLight = {
    body: '#212121',

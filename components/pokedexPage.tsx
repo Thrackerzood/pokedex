@@ -1,11 +1,12 @@
 import { NextPage } from "next";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { IPokemon } from "../interface/pokemonInterface";
 import { PokemonSection } from "../styles/pokedexAllContent";
-import { SwitchS } from "../styles/SwitchS";
+import { SwitchStyle } from "../styles/SwitchStyle";
 import PokemonPageContent from "./componentPokemonPage";
 
 
-const PokedexPage:NextPage<any> = (props:any ) => {
+const PokedexPage:NextPage<{props: {data: IPokemon[] } }> = ( props:{props: {data: IPokemon[] } }) => {
     const [currentPage, setCurrentPage]
     :[number,React.Dispatch<React.SetStateAction<number>>] = useState(1)
     const [postsPerPage]
@@ -13,7 +14,7 @@ const PokedexPage:NextPage<any> = (props:any ) => {
     const totalPage:number[] = []
     const indexOfLastPost:number = currentPage * postsPerPage
     const indexOfFirstPost:number = indexOfLastPost - postsPerPage
-    const setCurrentPost:any = props.props.data.slice(indexOfFirstPost, indexOfLastPost)
+    const setCurrentPost: IPokemon[] = props.props.data.slice(indexOfFirstPost, indexOfLastPost)
     for(let i = 1; i <= Math.ceil(props.props.data.length / postsPerPage); ++i){
        totalPage.push(i)
     }
@@ -29,12 +30,12 @@ const PokedexPage:NextPage<any> = (props:any ) => {
             <PokemonPageContent props={props.props}/> 
             : 
             <PokemonPageContent props={{data: setCurrentPost}}/>}
-        <SwitchS>
+        <SwitchStyle>
             {totalPage.length === 1 ? null : totalPage.map((number:number):JSX.Element => {
             return <button onClick={() => paginate(number)}
             className="switch-section__prev allButton"
             key={number}></button>})}
-        </SwitchS>
+        </SwitchStyle>
         </PokemonSection>
         
     )

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CompareS = styled.main
+export const CompareStyle = styled.main
 `
 margin: 0 auto;
 max-width: 1440px;
@@ -12,14 +12,6 @@ min-height: calc(100vh - 87px - 93px);
    max-width: 800px;
    align-items: flex-start;
    justify-content: space-around;
-}
-.pokemon-name{
-   margin: 5px;
-   padding: 5px;
-   font-size: 20px;
-   text-align: center;
-   border-radius: 20px;
-   text-transform: capitalize;
 }
 .pokemon-stat{
    text-align: start;
@@ -81,4 +73,21 @@ p{
 .stat-base-stat{
    margin-left: 5px;
 }
+`
+
+
+export const PokemonNameCompare = styled.p
+`
+margin: 5px;
+padding: 5px;
+font-size: 20px;
+text-align: center;
+border-radius: 20px;
+text-transform: capitalize;
+background: ${(props: {styleParagraph: {background: string}}) => props.styleParagraph.background}
+`
+export const PokemonStyleBaseStatCompare = styled.div
+`
+width: ${(props:{stylePokemonBaseStat: {width: number , background: string}}) => props.stylePokemonBaseStat.width}px;
+background: ${(props:{stylePokemonBaseStat: {width: number , background: string}}) => props.stylePokemonBaseStat.background};
 `

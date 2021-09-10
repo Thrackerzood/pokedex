@@ -1,20 +1,18 @@
 import type { AppProps } from 'next/app'
-import { Global, Styled } from '../styles/global'
-import Footer from '../components/footer'
+import { Global, Styled } from '../styles/globalStyle'
 import Nav from '../components/nav'
 import { ThemeProvider } from 'styled-components'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import {ThemeDark, ThemeLight } from '../styles/themes'
 
 
-  let [theme, setTheme]:any = ''
-  export const themeToggle = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light')
-  }
+  let [theme, setTheme]:[string,Dispatch<SetStateAction<string>>] = ['', prev => prev]
 
-function MyApp({ Component, pageProps }: AppProps | any) {
+  export const themeToggle = () => theme === 'light' ? setTheme('dark') : setTheme('light')
+
+function MyApp({ Component, pageProps }: AppProps) {
+
   [theme, setTheme] = useState('light')
-
 
   return (<>
   <ThemeProvider theme={ theme === 'light' ? ThemeDark : ThemeLight}>
@@ -22,7 +20,6 @@ function MyApp({ Component, pageProps }: AppProps | any) {
       <Nav/>
       <Global/>
       <Component {...pageProps} />
-      <Footer/>
     </Styled>
   </ThemeProvider>
   </>)

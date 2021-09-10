@@ -5,33 +5,25 @@ import PokedexContent from '../components/pokedexContent'
 import { Contexts, ContextPokemon } from '../context/context'
 import { ajax } from '../middleware/ajax'
 import { searchString } from '../middleware/search'
+import { IData, IStat } from '../interface/data'
+import Footer from '../components/footer'
+import { TypePokemonArr } from '../interface/typePokemonInterface'
 
 const Pokedex: NextPage = () => {
-  const [state, setState]
-  :[{
-    searchS: string;
-  },Dispatch<SetStateAction<{
-    searchS: string;
-  }>>] = useState({searchS: ''})
-  const [stateSearch, setSearch]:any = useState([])
-  const [blur, setBlur]:[boolean,Dispatch<SetStateAction<any>>] 
-  = useState(false)
-  const [mouseEnter, setMouseEnter]
-  :[boolean | true| false | any,
-    Dispatch<SetStateAction<boolean | true| false | any>>] 
-    = useState(false)
-  const [pokemon, setDataPokemon]:any = useState('')
-  const [stateType, setType]:any = useState('')
-  const [showing, showMoreInfo]
-  :[any ,Dispatch<SetStateAction<any>>] 
-  = useState(null)
-  const [typeGenerator, setGenerator]:any = useState('')
+  const [state, setState]:[{searchS: string;},Dispatch<SetStateAction<{searchS: string}>>] = useState({searchS: ''})
+  const [stateSearch, setSearch]:[string[],Dispatch<SetStateAction<string[]>>] = useState([''])
+  const [blur, setBlur]:[boolean | undefined,Dispatch<SetStateAction<boolean | undefined>>] = useState()
+  const [mouseEnter, setMouseEnter]:[boolean | undefined,Dispatch<SetStateAction<boolean | undefined>>] = useState()
+  const [showing, showMoreInfo]:[number ,Dispatch<SetStateAction<number>>] = useState(-1)
 
-  function changeSearch(event:any){
-      setState({...state, [event.name]: event.value})
-  }
-  const searchAll:any = async(inputValue:any) => {
-    let filterItem:string = ''
+  const [typeGenerator, setGenerator]:[TypePokemonArr ,Dispatch<SetStateAction<TypePokemonArr>>]  = useState({
+     "id": 1, "generation": { "name": "", "url": "" }, "name": "normal", "names": [ { "language": { "name": "", "url": "" }, "name": "" }, { "language": { "name": "", "url": "" }, "name": "" } ], "damage_relations": { "double_damage_from": [ { "name": "", "url": "" } ], "double_damage_to": [], "half_damage_from": [], "half_damage_to": [ { "name": "", "url": "" }, { "name": "", "url": "" } ], "no_damage_from": [ { "name": "", "url": "" } ], "no_damage_to": [ { "name": "", "url": "" } ] }, "game_indices": [ { "game_index": 0, "generation": { "name": "", "url": "" } }, { "game_index": 0, "generation": { "name": "", "url": "" } } ], "move_damage_class": { "name": "", "url": "" }, "moves": [ { "name": "", "url": "" }, { "name": "", "url": "" }, { "name": "", "url": "" } ], "past_damage_relations": [], "pokemon": [ { "pokemon": { "name": "", "url": "" }, "slot": 1 }, { "pokemon": { "name": "", "url": "" }, "slot": 1 }, { "pokemon": { "name": "", "url": "" }, "slot": 1 } ] 
+    })
+  const [pokemon, setDataPokemon]:[string ,Dispatch<SetStateAction<string>>]  = useState('')
+
+  const [stateType, setType]:[IData,Dispatch<SetStateAction<IData>>] = useState({"count": 0,"next":"","previous":null,"results":[{"name":"","url":""},{"name":"","url":""}]})
+  const searchAll: (inputValue: {searchS: string}) => Promise<void> = async(inputValue:{searchS: string}) => {
+    let filterItem:string & string[] | string | string[] = ''
     if (inputValue?.searchS.length >= 0) {
       await searchString
       .filter((list:string) => list.toLowerCase().includes(inputValue?.searchS.toLowerCase()))
@@ -44,7 +36,6 @@ const Pokedex: NextPage = () => {
   }
   const searchPokemon = async (event: { target: HTMLInputElement }) => {
     await setBlur(false)
-    await setMouseEnter(false)
     await setDataPokemon(event.target.innerHTML.toLowerCase())
   }
   const searchType = async () => {
@@ -57,10 +48,13 @@ const Pokedex: NextPage = () => {
   & MouseEvent<HTMLLabelElement, globalThis.MouseEvent> ) => {
       setGenerator(await ajax(`https://pokeapi.co/api/v2/type/${event.target.innerHTML}`, 'GET'))
 
-  }
+  }  
+  function changeSearch(event: {name : string} & {value: string}){
+      setState({...state, [event.name]: event.value})
+  } 
   useEffect(()=>{
+    setMouseEnter(false)
     setDataPokemon('')
-    showMoreInfo(null)
   }, [pokemon, stateSearch, state])
   return (<Contexts.Provider value={pokemon}>
     <ContextPokemon.Provider value={typeGenerator}>
@@ -97,7 +91,7 @@ const Pokedex: NextPage = () => {
         />
         </form>
       {
-      stateSearch && blur || mouseEnter ? 
+      stateSearch && blur || mouseEnter ?
       <div className="search-div"
         onMouseEnter={() => {
           setMouseEnter(true)
@@ -106,7 +100,7 @@ const Pokedex: NextPage = () => {
           setMouseEnter(false)
         }}
       > {
-        stateSearch != ''
+        stateSearch.length > 1
         ? 
         stateSearch.map((str:string, i:number)=>{
           if(i >= 5){
@@ -120,11 +114,8 @@ const Pokedex: NextPage = () => {
         : <p>not found ;(</p> 
         }
       </div>
-      
-      :
-
+      : 
       ''
-
       }
       </div>
       <div className="main-pokedex__select-div">
@@ -140,8 +131,9 @@ const Pokedex: NextPage = () => {
                   <div className="select">
                     <ul className="sub-ul">
                     
-                    {stateType !== '' ? 
-                    stateType?.results.map((type:any, i:number) => {
+                    {stateType !== null &&
+                    
+                      stateType?.results.map((type:IStat, i:number) => {
                       return <li className="sub-li" key={i} onClick={() => showMoreInfo(i === showing ? i : i)}>
                         <label htmlFor={`input${i}`} onClick={(event:MouseEvent<HTMLParagraphElement, 
                         MouseEvent<Element, globalThis.MouseEvent>> & {
@@ -154,8 +146,6 @@ const Pokedex: NextPage = () => {
                         </label>
                       </li>
                       })
-                    :
-                    ''
                     }
                     </ul>
                   </div>
@@ -180,6 +170,7 @@ const Pokedex: NextPage = () => {
             <PokedexContent/>
       </section>
     </PokedexS>
+    <Footer props={{width: '1440px' , color: 'white'}}/>
     </ContextPokemon.Provider>
     </Contexts.Provider>)
 }

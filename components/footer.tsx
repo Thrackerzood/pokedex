@@ -1,26 +1,13 @@
 import type { NextPage } from 'next'
-import { useRouter } from 'next/dist/client/router'
-import { FooterS } from '../styles/footerS'
+import { IFooter } from '../interface/IFoteer'
+import { FooterMain } from '../styles/footerStyle'
 
-const Footer: NextPage = () => {
-  const router = useRouter()
+const Footer: NextPage<IFooter> = (prop:IFooter) => {
   return (
-  <FooterS 
-  color={router.pathname === '/' 
-  ? 
-  '#F2B807'
-  : router.pathname === '/404'
-  ? '#D93E30'
-  : 'white'
-  }
-  width={router.pathname === '/404' 
-  ? '100%' 
-  : '1440'
-  }
-  >
+  <FooterMain width={prop.props.width} color={prop.props.color} className="footerMain">
     <p>Make with❤️</p>
     <a href="https://github.com/Thrackerzood/pokemonApi"><p>github</p></a>
-  </FooterS>
+  </FooterMain>
   )
 }
 

@@ -45,27 +45,14 @@ button{
     border-radius: 11px;
     box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.18);
 }
-.pokemon-type1{
-    min-width: 60px;
-    min-height: 16px;
-}
-.pokemon-type2{
-    min-width: 60px;
-    min-height: 16px;
-    margin-left: 15px;
-}
+
 .pokemon-stat{
     left: 28px;
     bottom: 40px;
     display: flex;
     position: absolute;
 }
-.pokemon-type{
-    left: 28px;
-    bottom: 20px;
-    display: flex;
-    position: absolute;
-}
+
 .pokemon-stat-attack{
     display: flex;
     color: #4B4B4B;
@@ -133,39 +120,7 @@ button{
     justify-content: center;
     background: rgb(0, 0, 0, 0.5);
 }
-.img-popup{
-    z-index: 10;
-    width: 364px;
-    height: 100%;
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    border-radius: 15px 0 0 15px;
-    box-shadow: 4px 4px 8px rgba(1, 28, 64, 0.2);
-    @media screen and (max-width: 1200px){
-        top: 0;
-        width: 100%; 
-        height: 300px;
-        flex-direction: column;
-        border-radius: 15px 15px 15px 15px;
-    }
-}
-.sub-popup{   
-    height: 371px;
-    z-index: 1000;
-    width: 800px;
-    position: relative;
-    border-radius: 15px;
-    @media screen and (max-width: 1200px){
-        width: 400px;
-        display: flex;
-        height: 700px;
-        align-items: center;
-        flex-direction: column;
-        justify-content: flex-start;
-     }
-}
+
 .sub-popup-background{
     z-index: 0;
     width: 100%;
@@ -181,7 +136,7 @@ button{
     position: absolute;
     @media screen and (max-width: 1200px){
         top: 0px;
-        disply: block;
+        display: block;
     }
 }
 .pokemon-type-popup{
@@ -294,35 +249,6 @@ button{
         width: 100%;
     }
 }
-.stat-pokemon{
-    left: 20px;
-    width: 350px;
-    height: 5px;
-    bottom: 15px;
-    display: flex;
-    position: absolute;
-    @media screen and (max-width: 1200px){
-        disply: block;
-    }
-}
-.stat-pokemon-health{
-    min-width: 170px;
-    >div{
-        height: 5px;
-        max-width: 200px;
-        border-radius: 5px;
-        background: linear-gradient(270deg, #64D368 0.15%, #64D368 70.88%); 
-    }   
-}
-.stat-pokemon-exp{
-    min-width: 200px;
-    >div{
-        height: 5px;
-        max-width: 200px;
-        border-radius: 5px;
-        background: linear-gradient(180deg, #F5DB13 0%, #F2B807 100%);
-    }
-}
 .close-popup{
     right: 5px;
     top: -57px;
@@ -337,7 +263,7 @@ button{
         transform: rotate(180deg);
     }
     @media screen and (max-width: 1200px){
-        disply: block;
+        display: block;
     }
 }
 .statistic-pokemon-all{

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 
 
-export const HomeS = styled.main
+export const HomeStyle = styled.main
 `
 display: flex;
 margin: 0 auto;

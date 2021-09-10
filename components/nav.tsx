@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { NavS } from '../styles/navS'
+import { NavStyle } from '../styles/navStyle'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/dist/client/router'
@@ -8,7 +8,7 @@ import { themeToggle } from '../pages/_app'
 const Nav: NextPage = () => {
   const router = useRouter()
   return (<>
-  <NavS>
+  <NavStyle>
     <Link href='/'>
     <div className="logo">
       <Image 
@@ -44,7 +44,7 @@ const Nav: NextPage = () => {
 	      <div className="checkbox-switch">
         </div>
     </label>
-  </NavS>
+  </NavStyle>
   </>)
 }
 
