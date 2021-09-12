@@ -83,4 +83,21 @@ input:checked + .checkbox-switch::before {
 	transform:translateX(35px);
    background: white url('img/Subtract.png') no-repeat 50% 50%;
 }
+.lang-toggle{
+   padding: 5px;
+   display: flex;
+   font-size: 18px;
+   border-radius: 100%;
+   width: 30px;
+   height: 30px;
+   background: rgb(0,0,0, .1);
+   align-items: center;
+   margin: 10px 20px  0 20px;
+   border: 1px solid rgba(0,0,0,.1);
+   justify-content: center;
+   cursor: pointer;
+   user-select : none;
+   font-weight: 500;
+   font-family: 'Karla', sans-serif , -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 `

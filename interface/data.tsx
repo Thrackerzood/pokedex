@@ -1,7 +1,7 @@
 export interface IData {
    count: number
    next: string
-   previous: null
+   previous: any
    results: IStat[];
 }
 

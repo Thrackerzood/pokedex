@@ -2,18 +2,20 @@ import type { NextPage } from 'next'
 import { NavStyle } from '../styles/navStyle'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRouter } from 'next/dist/client/router'
+import { NextRouter, useRouter } from 'next/dist/client/router'
 import { themeToggle } from '../pages/_app'
+import { Dispatch, SetStateAction, useState } from 'react'
 
 const Nav: NextPage = () => {
-  const router = useRouter()
+  const router: NextRouter = useRouter()
+  const [lang, setLang]:[boolean, Dispatch<SetStateAction<boolean | true | any>>] = useState(true)
   return (<>
   <NavStyle>
     <Link href='/'>
     <div className="logo">
       <Image 
       src='/img/Logo.png' 
-      alt="logoPoko" 
+      alt="logoPokemon" 
       width={159} 
       height={63}
       />
@@ -38,7 +40,17 @@ const Nav: NextPage = () => {
             Compare</a></Link></li>
       </ul>
     </nav>
-
+    <div
+    className="lang-toggle"
+    onClick={() => setLang(!lang)}
+    >
+    {lang 
+    ?
+    <p>ENG</p>
+    :
+    <p>RU</p>
+    }  
+    </div>
     <label>
 	      <input type="checkbox" onClick={themeToggle}/>
 	      <div className="checkbox-switch">

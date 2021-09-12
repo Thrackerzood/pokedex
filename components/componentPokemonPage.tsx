@@ -15,7 +15,7 @@ import { PokemonButton, PokemonImgPopup, StatPokemon, SubPopupPokemonImg } from 
                 const stateColor2:string = colorPokemon(type2)
         return (
               
-        <div className="popup" key={i}>
+        <div className="popup" key={data.id}>
 
         <SubPopupPokemonImg styleBackground={{background: stateColor1}} >
         <div className="close-popup"
@@ -28,7 +28,7 @@ import { PokemonButton, PokemonImgPopup, StatPokemon, SubPopupPokemonImg } from 
             <p>Abilities</p>
             <div>
                 <p className="pokemon-ability1">{data?.abilities[0]?.ability?.name} </p>
-                <p className="pokemon-ability2"> - {data?.abilities[1]?.ability?.name ? data?.abilities[1]?.ability?.name : ''}</p>
+                <p className="pokemon-ability2"> -{data?.abilities[1]?.ability?.name ? data?.abilities[1]?.ability?.name : ''}</p>
             </div>
         </div>
         <PokemonImgPopup styleBackground={{background: stateColor1}}>
@@ -41,11 +41,10 @@ import { PokemonButton, PokemonImgPopup, StatPokemon, SubPopupPokemonImg } from 
         <PokemonButton background={{color1 : stateColor1 ,color2:  stateColor2}}>
             <button className="pokemon-type1">
             {data?.types[0]?.type?.name}</button>
-            { data?.types[1]?.type?.name ?
+            { data?.types[1]?.type?.name &&
             <button className="pokemon-type2">
             {data?.types[1]?.type?.name}
-            </button>
-            : ''}
+            </button>}
         </PokemonButton>
     </PokemonImgPopup>
     <div className="game-index"><p>{data?.id}</p></div>
@@ -70,13 +69,13 @@ import { PokemonButton, PokemonImgPopup, StatPokemon, SubPopupPokemonImg } from 
             <div className="statistic-pokemon-all">
                 <div className="statistic-sub">
                     <div className="statistic-sub-sub">
-                        <p>{data?.stats[1]?.base_stat}</p>
+                        <p>{data?.stats[2]?.base_stat}</p>
                     </div>
                     <p className="statistic-sub-p">Defense</p>
                 </div>
                 <div className="statistic-sub">
                     <div className="statistic-sub-sub">
-                        <p>{data?.stats[2]?.base_stat}</p>
+                        <p>{data?.stats[1]?.base_stat}</p>
                     </div>
                     <p className="statistic-sub-p">Attack</p>
                 </div>
@@ -106,8 +105,8 @@ import { PokemonButton, PokemonImgPopup, StatPokemon, SubPopupPokemonImg } from 
                         const stateColor2:string = colorPokemon(type2)
             return (
 
-            <>         
-            <div key={i}
+            <div key={i}>         
+            <div
 
                 className="pokemon-section" 
 
@@ -126,11 +125,10 @@ import { PokemonButton, PokemonImgPopup, StatPokemon, SubPopupPokemonImg } from 
             <PokemonButton background={{color1 : stateColor1 ,color2:  stateColor2}}>
                 <button className="pokemon-type1">
                 {data?.types[0]?.type?.name}</button>
-                { data?.types[1]?.type?.name ?
+                { data?.types[1]?.type?.name &&
                 <button className="pokemon-type2">
                 {data?.types[1]?.type?.name}
                 </button>
-                    : ''
                 }
             </PokemonButton>
             <div className="pokemon-stat">
@@ -153,7 +151,7 @@ import { PokemonButton, PokemonImgPopup, StatPokemon, SubPopupPokemonImg } from 
                 popupPokemonInfo(data , i)
 
             }
-            </>)
+            </div>)
             
         })
       }
