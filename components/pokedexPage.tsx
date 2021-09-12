@@ -23,7 +23,7 @@ const PokedexPage:NextPage<{props: {data: IPokemon[] } }> = ( props:{props: {dat
     = (numberPage:number):void => {
        setCurrentPage(numberPage)
     }
-    useEffect(()=>{}, [paginate])
+    useEffect(()=>{}, [paginate, props])
     return (
         <PokemonSection>
             {props.props.data.length < 10 ? 

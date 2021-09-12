@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { IFooter } from '../interface/IFoteer'
+import { IFooter } from '../interface/IFooter'
 import { FooterMain } from '../styles/footerStyle'
 
 const Footer: NextPage<IFooter> = (prop:IFooter) => {

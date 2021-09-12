@@ -55,15 +55,14 @@ const Compare:NextPage = () => {
             return element
          }
    })
-
-
+   
    useEffect(() => { 
       loadData()
    }, [])
    
    return (<>
    <CompareStyle>
-      {load ?
+      {load &&
       <section>
          {statePokemon.map((data:IPokemon, i:number) => {
             return <article className="comparePokemon" key={i}>
@@ -100,10 +99,9 @@ const Compare:NextPage = () => {
                   </article>
             
          })}
-      </section>
-      :
-      <p className="loadData">Load...</p>
-      }
+      </section>}
+     {!load&&
+      <p className="loadData">Load...</p>}
    </CompareStyle>
    <Footer props={{width: '1440px' , color: 'white'}}/>
    </>

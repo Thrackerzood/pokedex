@@ -117,6 +117,9 @@ font-family: 'Karla', sans-serif;
     :hover >.select{
         display: block;
     }
+    :hover >.select-range{
+        display: block;
+    }
 }
 .clip-path{
     top: 12px;
@@ -133,10 +136,27 @@ font-family: 'Karla', sans-serif;
     height: 500px;
     max-width: 1125px;
     margin: 52px auto;
+    position: relative;
     @media screen and (max-width: 1200px){
         width: 100%;
         height: auto;
         margin: 0 auto;  
+    }
+    .found-range-paragraph-false{
+        color: red;
+        top: -30px;
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        position: absolute;
+    }
+    .found-range-paragraph-true{
+        top: -30px;
+        width: 100%;
+        color: green;
+        margin: 0 auto;
+        text-align: center;
+        position: absolute;
     }
 }
 
@@ -197,5 +217,77 @@ font-family: 'Karla', sans-serif;
     text-align: center;
     margin: 25vh 0;
     font-size: 48px;
+}
+
+.select-range{
+    top: 35px;
+    z-index: 2;
+    width: 135px;
+    display: none;
+    border-radius: 5px;
+    position: absolute;
+    background: #F2F2F2;
+    padding-bottom: 15px;
+    border-radius: 0 0 8px 8px;
+    >label{
+        display: flex;
+        cursor: pointer;
+        margin-top: 12px;
+        margin-left: 35px;
+        align-items: center;
+    }
+}
+.range-state-div{
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    >div{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        >p{ 
+            width: 100%;
+            font-size: 12px;
+        }
+        input{
+            width: 80%;
+            margin: 5px;
+            height: 20px;
+            border: none;
+            outline: none;
+            padding: 3px 7px;
+            border-radius: 16px;
+            background: #F6F7F9;
+            box-shadow: 2px 2px 2px rgba(33, 33, 33, 0.1);
+        }
+        .text-Pokemon-select{
+            width: 100%;
+            font-size: 12px;
+            margin-left: 25px;
+        }
+    }        
+    .sub-range-state-div{
+        margin-top: 30px;
+    }
+    button{
+        margin: 5px;
+        width: 66px;
+        padding: 5px;
+        border: none;
+        outline: none;
+        background: #73D677;
+        border-radius: 11px;
+        :hover{
+            background: #93D677;
+        }
+    }
+    .errorRange{
+        top: 0;
+        left: 0;
+        color: red;
+        position: absolute;
+        text-align: center;
+    }
 }
 `
