@@ -1,6 +1,4 @@
 import { Dispatch, MutableRefObject, SetStateAction } from "react";
-
-
 export interface IContent{
    props: { showing: number , 
       rangeAttack: {
@@ -19,5 +17,5 @@ export interface IContent{
       refPokemonExpRangeTo:MutableRefObject<HTMLInputElement|null>,
       setMaxStateAttack:Dispatch<SetStateAction<{maxAttack: number}>>,
       setMaxStateExp:Dispatch<SetStateAction<{maxExp: number}>>,
-  }
+   }
 }
